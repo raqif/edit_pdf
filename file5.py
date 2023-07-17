@@ -28,11 +28,20 @@ with open(text_file, 'r') as file:
     text_input = file.read()
 
 texts = text_input.strip().split('\t')
-# print(texts)
-del texts[1]
-# print(texts)
 
-# Output file path
-output_file = os.path.join(input_folder, 'output.pdf')
+del texts[0]
+del texts[1]
+print(texts)
+texts = texts[:2]
+print(texts)
+
+# Output folder path
+output_folder = texts[1]
+print(output_folder)
+output_file_name = '5. BORANG PENGISYTIHARAN MAKLUMAT SYARIKAT DALAM PEROLEHAN.pdf'
+output_file = os.path.join(output_folder, output_file_name)
+
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
 
 add_text_as_image_to_pdf(input_file, output_file, texts, positions, page_number)
